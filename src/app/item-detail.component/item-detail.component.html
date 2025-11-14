@@ -1,0 +1,39 @@
+
+
+<div *ngIf="item" class="item-detail-container">
+  <div class="item-card">
+    <h2 class="item-name">{{ item.name }}</h2>
+
+    <table class="item-details">
+      <tr>
+        <td><strong>SKU:</strong></td>
+        <td>{{ item.sku }}</td>
+      </tr>
+      <tr>
+        <td><strong>Price:</strong></td>
+        <td>{{ item.price | currency }}</td>
+      </tr>
+      <tr>
+        <td><strong>Stock:</strong></td>
+        <td>{{ item.stock_quantity }}</td>
+      </tr>
+      <tr>
+        <td><strong>Manufacturer:</strong></td>
+        <td>{{ item.manufacturer }}</td>
+      </tr>
+      <tr>
+        <td><strong>Country:</strong></td>
+        <td>{{ item.country_of_origin }}</td>
+      </tr>
+      <tr>
+        <td><strong>Description:</strong></td>
+        <td>{{ item.description }}</td>
+      </tr>
+    </table>
+
+    <div class="actions">
+      <button class="edit-btn" (click)="edit()">Edit</button>
+      <button class="back-btn" (click)="router.navigate(['/'])">Back</button>
+    </div>
+  </div>
+</div>

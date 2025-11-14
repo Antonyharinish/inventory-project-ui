@@ -1,0 +1,82 @@
+<!-- <div class="toolbar">
+  <h2>Inventory</h2>
+  <button (click)="add()" class="btn">+ Add Item</button>
+</div>
+
+<div *ngIf="loading">Loading...</div>
+<div *ngIf="error" class="error">{{ error }}</div>
+
+<table *ngIf="!loading" class="items-table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>SKU</th>
+      <th>Price</th>
+      <th>Stock</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of items">
+      <td>{{ item.name }}</td>
+      <td>{{ item.sku }}</td>
+      <td>{{ item.price | currency }}</td>
+      <td>{{ item.stock_quantity }}</td>
+      <td>
+        <button (click)="view(item)">View</button>
+        <button (click)="edit(item)">Edit</button>
+        <button (click)="deleteItem(item)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table> -->
+
+
+<div class="toolbar">
+  <h2>📦 Inventory</h2>
+  <button (click)="add()" class="btn add-btn">+ Add Item</button>
+</div>
+
+<div *ngIf="loading" class="info">Loading...</div>
+<div *ngIf="error" class="error">{{ error }}</div>
+
+<table *ngIf="!loading && items.length > 0" class="items-table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>SKU</th>
+      <th>Price</th>
+      <th>Stock</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of items">
+      <td>{{ item.name }}</td>
+      <td>{{ item.sku }}</td>
+      <td>{{ item.price | currency }}</td>
+      <td>{{ item.stock_quantity }}</td>
+      <td class="actions">
+        <button class="view" (click)="view(item)">View</button>
+        <button class="edit" (click)="edit(item)">Edit</button>
+        <button class="delete" (click)="deleteItem(item)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+<div class="pagination" *ngIf="!loading && items.length > 0">
+ 
+  <button class="page-btn" [disabled]="!previous" (click)="previousPage()">⬅ Prev</button>
+  <span class="page-info">
+    Page {{ page }}  
+    <span> | Total Items: {{ count }} </span>
+  </span>
+
+<button class="page-btn" [disabled]="!next" (click)="nextPage()">Next ➡</button>
+</div>
+
+<div *ngIf="!loading && items.length === 0" class="info">
+  No items found. Click “+ Add Item” to create one.
+</div>

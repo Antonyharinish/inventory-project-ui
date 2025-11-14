@@ -1,0 +1,145 @@
+// .toolbar {
+//   display:flex;
+//   justify-content:space-between;
+//   align-items:center;
+//   margin-bottom:12px;
+// }
+// .items-table {
+//   width:100%;
+//   border-collapse:collapse;
+//   th, td { padding:8px; border-bottom:1px solid #eee; text-align:left; }
+// }
+// .btn { padding:8px 12px; }
+
+
+/* Toolbar */
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding: 10px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+
+  h2 {
+    margin: 0;
+    font-size: 1.5rem;
+  }
+
+  .btn {
+    padding: 8px 14px;
+    border: none;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: 0.2s ease;
+  }
+
+  .add-btn {
+    background-color: #007bff;
+    color: white;
+
+    &:hover {
+      background-color: #0056b3;
+    }
+  }
+}
+
+/* Table Styling */
+.items-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+
+  th,
+  td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+
+  th {
+    background-color: #007bff;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  tr:hover {
+    background-color: #f1f1f1;
+  }
+
+  td.actions {
+    display: flex;
+    gap: 6px;
+  }
+
+  button {
+    padding: 6px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+    font-size: 0.9rem;
+    transition: 0.2s;
+
+    &.view {
+      background-color: #17a2b8;
+    }
+
+    &.edit {
+      background-color: #ffc107;
+      color: #333;
+    }
+
+    &.delete {
+      background-color: #dc3545;
+    }
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+}
+
+/* Info and Error Messages */
+.info {
+  margin-top: 15px;
+  color: #555;
+  font-style: italic;
+}
+
+.error {
+  color: #d9534f;
+  background: #f8d7da;
+  padding: 10px;
+  border-radius: 6px;
+}
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+  gap: 20px;
+  align-items: center;
+}
+
+.page-btn {
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 6px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.page-btn:disabled {
+  background: #cccccc;
+  cursor: not-allowed;
+}
+
+.page-info {
+  font-weight: bold;
+}

@@ -1,0 +1,175 @@
+<div class="form-container">
+  <h2>{{ isEdit ? 'Edit Item' : 'Add Item' }}</h2>
+
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <table class="form-table">
+
+      <!-- NAME -->
+      <tr>
+        <td><label for="name">Name:</label></td>
+        <td>
+          <input id="name" formControlName="name" />
+          <div class="error" *ngIf="form.get('name')?.touched && form.get('name')?.invalid">
+            <small *ngIf="form.get('name')?.errors?.['required']">Name is required</small>
+            <small *ngIf="form.get('name')?.errors?.['minlength']">Minimum 3 characters</small>
+          </div>
+        </td>
+      </tr>
+
+      <!-- SKU -->
+      <tr>
+        <td><label for="sku">SKU:</label></td>
+        <td>
+          <input id="sku" formControlName="sku" />
+          <div class="error" *ngIf="form.get('sku')?.touched && form.get('sku')?.invalid">
+            <small *ngIf="form.get('sku')?.errors?.['required']">SKU is required</small>
+            <small *ngIf="form.get('sku')?.errors?.['minlength']">Minimum 3 characters</small>
+          </div>
+        </td>
+      </tr>
+
+      <!-- PRICE -->
+      <!-- <tr>
+        <td><label for="price">Price:</label></td>
+        <td>
+          <input id="price" type="number" formControlName="price" />
+          <div class="error" *ngIf="form.get('price')?.touched && form.get('price')?.invalid">
+            <small *ngIf="form.get('price')?.errors?.['required']">Price is required</small>
+            <small *ngIf="form.get('price')?.errors?.['min']">Price must be greater than 0</small>
+          </div>
+        </td>
+      </tr> -->
+
+      <!-- STOCK -->
+      <!-- <tr>
+        <td><label for="stock_quantity">Stock:</label></td>
+        <td>
+          <input id="stock_quantity" type="number" formControlName="stock_quantity" />
+          <div class="error" *ngIf="form.get('stock_quantity')?.touched && form.get('stock_quantity')?.invalid">
+            <small *ngIf="form.get('stock_quantity')?.errors?.['required']">Stock is required</small>
+            <small *ngIf="form.get('stock_quantity')?.errors?.['min']">Stock cannot be negative</small>
+          </div>
+        </td>
+      </tr> -->
+
+      <!-- <input
+  id="price"
+  type="number"
+  formControlName="price"
+  min="0"
+  max="99999"
+  step="0.01"
+  maxlength="8"
+/>
+<div class="error" *ngIf="form.get('price')?.touched && form.get('price')?.invalid">
+  <small *ngIf="form.get('price')?.errors?.['required']">Price is required</small>
+  <small *ngIf="form.get('price')?.errors?.['max']">Maximum price allowed is 99999</small>
+  <small *ngIf="form.get('price')?.errors?.['pattern']">Invalid price format</small>
+</div>
+
+<input
+  id="stock_quantity"
+  type="number"
+  formControlName="stock_quantity"
+  min="0"
+  max="9999"
+  maxlength="4"
+/>
+
+<div class="error" *ngIf="form.get('stock_quantity')?.touched && form.get('stock_quantity')?.invalid">
+  <small *ngIf="form.get('stock_quantity')?.errors?.['required']">Stock is required</small>
+  <small *ngIf="form.get('stock_quantity')?.errors?.['max']">Maximum stock is 9999</small>
+  <small *ngIf="form.get('stock_quantity')?.errors?.['pattern']">Numbers only, max 4 digits</small>
+</div> -->
+
+
+<tr>
+  <td><label for="price">Price:</label></td>
+  <td>
+    <input
+      id="price"
+      type="number"
+      formControlName="price"
+      min="0"
+      max="99999"
+      step="0.01"
+      (input)="limitPrice($event)"
+    />
+
+    <div class="error" *ngIf="form.get('price')?.touched && form.get('price')?.invalid">
+      <small *ngIf="form.get('price')?.errors?.['required']">Price is required</small>
+      <small *ngIf="form.get('price')?.errors?.['max']">Maximum price allowed is 99999</small>
+      <small *ngIf="form.get('price')?.errors?.['pattern']">Invalid price format</small>
+    </div>
+  </td>
+</tr>
+
+
+<tr>
+  <td><label for="stock_quantity">Stock:</label></td>
+  <td>
+    <input
+      id="stock_quantity"
+      type="number"
+      formControlName="stock_quantity"
+      min="0"
+      max="9999"
+      (input)="limitStock($event)"
+    />
+
+    <div class="error" *ngIf="form.get('stock_quantity')?.touched && form.get('stock_quantity')?.invalid">
+      <small *ngIf="form.get('stock_quantity')?.errors?.['required']">Stock is required</small>
+      <small *ngIf="form.get('stock_quantity')?.errors?.['max']">Maximum stock allowed is 9999</small>
+      <small *ngIf="form.get('stock_quantity')?.errors?.['pattern']">Numbers only, max 4 digits</small>
+    </div>
+  </td>
+</tr>
+
+
+
+      <!-- MANUFACTURER -->
+      <tr>
+        <td><label for="manufacturer">Manufacturer:</label></td>
+        <td>
+          <input id="manufacturer" formControlName="manufacturer" />
+          <div class="error" *ngIf="form.get('manufacturer')?.touched && form.get('manufacturer')?.invalid">
+            <small>Manufacturer is required</small>
+          </div>
+        </td>
+      </tr>
+
+      <!-- COUNTRY -->
+      <tr>
+        <td><label for="country_of_origin">Country:</label></td>
+        <td>
+          <input id="country_of_origin" formControlName="country_of_origin" />
+          <div class="error" *ngIf="form.get('country_of_origin')?.touched && form.get('country_of_origin')?.invalid">
+            <small>Country is required</small>
+          </div>
+        </td>
+      </tr>
+
+      <!-- DESCRIPTION -->
+      <tr>
+        <td><label for="description">Description:</label></td>
+        <td>
+          <textarea id="description" formControlName="description"></textarea>
+          <div class="error" *ngIf="form.get('description')?.touched && form.get('description')?.invalid">
+            <small>Description is required</small>
+          </div>
+        </td>
+      </tr>
+
+    </table>
+
+    <div class="actions">
+      <button type="submit" class="save-btn">
+        {{ isEdit ? 'Save Changes' : 'Create Item' }}
+      </button>
+
+      <button type="button" class="cancel-btn" (click)="router.navigate(['/'])">
+        Cancel
+      </button>
+    </div>
+  </form>
+</div>
