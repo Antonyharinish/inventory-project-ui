@@ -31,31 +31,11 @@ export class ItemFormComponent implements OnInit {
       name: ['', [Validators.required, Validators.minLength(3)]],
       sku: ['', [Validators.required, Validators.minLength(3)]],
       description: ['', Validators.required],
-      price: [0,
-    [
-      Validators.required,
-      Validators.min(0),
-      Validators.max(99999),            // limit maximum price
-      Validators.pattern(/^\d{1,5}(\.\d{1,2})?$/) // max 5 digits + 2 decimals
-    ]
-  ],
-
-  stock_quantity: [
-    0,
-    [
-      Validators.required,
-      Validators.min(0),
-      Validators.max(9999),              // limit stock to 4 digits
-      Validators.pattern(/^\d{1,4}$/)     // only numbers, max 4 digits
-    ]
-  ],
-
-
-      // price: [0, [Validators.required, Validators.min(1)]],
+      price: [0, [Validators.required, Validators.min(1)]],
       weight_kg: [0, [Validators.min(0)]],
       manufacturer: ['', Validators.required],
       country_of_origin: ['', Validators.required],
-      // stock_quantity: [0, [Validators.required, Validators.min(0)]],
+      stock_quantity: [0, [Validators.required, Validators.min(0)]],
       is_active: [true]
     });
 
@@ -107,22 +87,5 @@ export class ItemFormComponent implements OnInit {
       });
     }
   }
-
-  limitPrice(event: any) {
-  let val = event.target.value;
-  if (val.length > 8) {
-    event.target.value = val.slice(0, 8);
-    this.form.get('price')?.setValue(event.target.value);
-  }
-}
-
-limitStock(event: any) {
-  let val = event.target.value;
-  if (val.length > 4) {
-    event.target.value = val.slice(0, 4);
-    this.form.get('stock_quantity')?.setValue(event.target.value);
-  }
-}
-
 
 }
